@@ -14,6 +14,7 @@ describe('FormatFullname', () => {
     expect(formatFullname(20)).to.equal('Error');
     expect(formatFullname([])).to.equal('Error');
     expect(formatFullname({})).to.equal('Error');
+    expect(formatFullname('*/#')).to.equal('Error');
     expect(formatFullname(function() {})).to.equal('Error');
   });
 
@@ -21,6 +22,13 @@ describe('FormatFullname', () => {
     expect(formatFullname(['John'])).to.equal('Error');
     expect(formatFullname(['Doe'])).to.equal('Error');
     expect(formatFullname(['John Doe test'])).to.equal('Error');
+    expect(formatFullname(['Jo Do'])).to.equal('Error');
+  });
+
+  it('should return firstName and lastname if format of arg is correct', () => {
+    expect(formatFullname('JOHN DOE')).to.equal('John Doe');
+    expect(formatFullname('john doe')).to.equal('John Doe');
+    expect(formatFullname('amanda doe')).to.equal('Amanda Doe');
   });
 });
 
